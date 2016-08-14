@@ -1,5 +1,6 @@
 <div class="ch-col--md-10 ch-col--md-push-1 ch-col--lg-9 ch-col--lg-push-3" data-component="ac_vehicle_search_results">
   <div class="ac-results ac-results--experiment">
+    <%= render 'components/ac_spinner', loading: false %>
     <% @ac_vehicle_search.vehicles.each do |vehicle| %>
       <%= render 'components/ac_vehicle', vehicle: vehicle %>
     <% end %>

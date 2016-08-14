@@ -1,0 +1,17 @@
+<% 
+  style = (defined?(loading) && loading) ? "" : "display: none;" 
+%>
+
+<%= content_tag(:div, class: "ac-spinner", style: style, data: { component: "ac_spinner" }) do %>
+  <div ref="loading" class="ac-spinner__mask"></div>
+  <div class="ac-spinner__fixed">
+    <div class="ch-container">
+      <div class="ch-row">
+        <div class="ch-col--lg-9 ch-col--lg-push-3">
+          <span class="ac-spinner__text">Refining your results</span>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+

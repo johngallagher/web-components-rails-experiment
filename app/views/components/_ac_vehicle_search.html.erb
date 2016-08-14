@@ -59,17 +59,26 @@ function asQueryParams(keyValueObject) {
   return queryParams.join("&");
 }
 
-function refreshComponent() {
+function loadInReplacementsFrom(url) {
   var oReq = new XMLHttpRequest();
   oReq.onload = function (e) {
     executeReplacements(e.target.response);
   };
-  oReq.open('GET', "/api/components/ac_vehicle_search?" + asQueryParams(state()), true);
+  oReq.open('GET', url, true);
   oReq.responseType='json';
   oReq.send();
 }
 
+function indicateComponentLoading() {
+  loadInReplacementsFrom("/api/components/ac_vehicle_search_loading");
+}
+
+function refreshComponent() {
+  loadInReplacementsFrom("/api/components/ac_vehicle_search?" + asQueryParams(state()));
+}
+
 function filtersChanged(element) {
+  indicateComponentLoading();
   updateStateFromElement(element);
   refreshComponent();
 }
