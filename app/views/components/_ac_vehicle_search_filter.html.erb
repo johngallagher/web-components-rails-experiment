@@ -17,24 +17,7 @@
             <label id="searchTypeLabel" for="search-type" class="ch-form__control-label" data-reactid="119">Car type
             </label>
             <div data-reactid="120">
-              <select id="search-type" name="search_type" class="ch-form__control" data-reactid="121">
-                <option selected="" value="" data-reactid="122">All cars
-                </option>
-                <option value="Used Cars" data-reactid="123">Used cars
-                </option>
-                <option value="New Cars" data-reactid="124">New cars
-                </option>
-                <option value="Nearly New Cars" data-reactid="125">Nearly new cars
-                </option>
-                <option value="Value Range" data-reactid="126">Value Range
-                </option>
-                <option value="Vans" data-reactid="127">Vans
-                </option>
-                <option value="Motability" data-reactid="128">Motability
-                </option>
-                <option value="Deal Plus" data-reactid="129">Deal Plus
-                </option>
-              </select>
+              <%= select_tag :search_type, options_for_select(search_types, search_type), class: "ch-form__control", onchange: "this.form.submit();" %>
             </div>
           </div>
           <div class="ch-form__group--sm" data-reactid="130">
