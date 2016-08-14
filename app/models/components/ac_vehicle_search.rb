@@ -1,7 +1,9 @@
 class Components::AcVehicleSearch
-  attr_reader :vehicles, :makes, :models, :count, :search_types, :title, :total_number_of_pages, :current_page
-  def initialize(state:)
-    url = "http://www.arnoldclark.com/used-cars/search.json?search_type=#{state[:search_type]}&make=#{state[:make]}&model=#{state[:model]}&page=#{state[:page]}"
+  attr_reader :vehicles, :makes, :models, :count, :search_types, :title, :total_number_of_pages, :current_page, :current_options
+  def initialize(params:)
+    url = "http://www.arnoldclark.com/used-cars/search.json?search_type=#{params[:search_type]}&make=#{params[:make]}&model=#{params[:model]}&page=#{params[:page].to_i}"
+    Rails.logger.debug("URL is...")
+    Rails.logger.debug(url)
     response = JSON.parse(open(url).read)
     @vehicles = response["searchResults"].map { |result| OpenStruct.new(result) }
     @makes = response["searchCriteria"]["availableOptions"]["makes"]

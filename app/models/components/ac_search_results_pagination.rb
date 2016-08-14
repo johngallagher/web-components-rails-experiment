@@ -2,8 +2,8 @@ class Components::AcSearchResultsPagination
   attr_reader :total_number_of_pages, :current_page
   PATH = "/vehicles"
 
-  def initialize(state:, total_number_of_pages:, current_page:)
-    @state = state
+  def initialize(params:, total_number_of_pages:, current_page:)
+    @params = params
     @total_number_of_pages = total_number_of_pages
     @current_page = current_page
   end
@@ -90,7 +90,7 @@ class Components::AcSearchResultsPagination
   private
 
   def page_path page_number
-    "#{PATH}?make=#{@state['make']}&model=#{@state['model']}&search_type=#{@state['search_type']}&page=#{page_number}"
+    "#{PATH}?make=#{@params['make']}&model=#{@params['model']}&search_type=#{@params['search_type']}&page=#{page_number}"
   end
 
 end
