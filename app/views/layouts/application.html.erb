@@ -4,11 +4,15 @@
     <title>WebComponentsRailsExperiment</title>
     <%= csrf_meta_tags %>
 
-<link rel="stylesheet" media="screen" href="http://www.arnoldclark.com/assets/chassis/css/chassis.min.css">
-<link rel="stylesheet" media="screen" href="http://www.arnoldclark.com/assets/application-2ac196ba955018be1766136b9feb0ec37f9718452e6a3843d01e763ede8f2d89.css">
+    <link rel="stylesheet" media="screen" href="http://www.arnoldclark.com/assets/chassis/css/chassis.min.css">
+    <link rel="stylesheet" media="screen" href="http://www.arnoldclark.com/assets/application-2ac196ba955018be1766136b9feb0ec37f9718452e6a3843d01e763ede8f2d89.css">
   </head>
 
   <body>
+    <%= render 'components/ac_header'%>
+    <main role="main">
     <%= yield %>
+    </main>
+    <%= render 'components/ac_footer' %>
   </body>
 </html>

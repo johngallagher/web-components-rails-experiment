@@ -1,0 +1,16 @@
+<% @ac_search_results_pagination = Components::AcSearchResultsPagination.new(state: params, current_page: current_page, total_number_of_pages: total_number_of_pages) %>
+
+<div class="ch-row" data-reactid="1603">
+  <div class="ch-col--lg-9 ch-col--lg-push-3" data-reactid="1604">
+    <nav class="ac-pagination" role="navigation">
+      <%= @ac_search_results_pagination.first_page_link %>
+      <%= @ac_search_results_pagination.previous_page_link %>
+
+      <% (1..5).each do |page_number| %>
+        <%= @ac_search_results_pagination.page_link(page_number) %>
+      <% end %>
+      <%= @ac_search_results_pagination.next_page_link %>
+      <%= @ac_search_results_pagination.last_page_link %>
+    </nav>
+  </div>
+</div>
