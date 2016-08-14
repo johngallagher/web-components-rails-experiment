@@ -3,18 +3,19 @@
 
 <%= render 'components/ac_header'%>
 <main role="main">
-<form id="search" name="search" class="ch-form" action="/" method="get">
-<%= render 'components/ac_vehicle_search_banner', title: @ac_vehicle_search.title  %>
-<div class="ch-container">
+<form id="search" name="search" class="ch-form" action="/vehicles" method="get">
+  <%= render 'components/ac_vehicle_search_banner', title: @ac_vehicle_search.title  %>
+  <div class="ch-container">
 
-  <div class="ch-row">
-    <div class="ch-col--md-10 ch-col--md-push-1 ch-col--lg-9 ch-col--lg-push-3">
-      <div class="ac-results ac-results--experiment">
-        <% @ac_vehicle_search.vehicles.each do |vehicle| %>
-          <%= render 'components/ac_vehicle', vehicle: vehicle %>
-        <% end %>
+    <div class="ch-row">
+      <div class="ch-col--md-10 ch-col--md-push-1 ch-col--lg-9 ch-col--lg-push-3">
+        <div class="ac-results ac-results--experiment">
+          <% @ac_vehicle_search.vehicles.each do |vehicle| %>
+            <%= render 'components/ac_vehicle', vehicle: vehicle %>
+          <% end %>
+        </div>
       </div>
+      <%= render 'components/ac_vehicle_search_filter', search_type: search_type, make: make, model: model, search_types: @ac_vehicle_search.search_types, makes: @ac_vehicle_search.makes, models: @ac_vehicle_search.models %>
     </div>
-    <%= render 'components/ac_vehicle_search_filter', search_type: search_type, make: make, model: model, search_types: @ac_vehicle_search.search_types, makes: @ac_vehicle_search.makes, models: @ac_vehicle_search.models %>
   </div>
-</div>
+</form>
