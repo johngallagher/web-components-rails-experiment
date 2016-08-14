@@ -1,4 +1,4 @@
-<% @ac_search_results_pagination = Components::AcSearchResultsPagination.new(params: params, current_page: current_page, total_number_of_pages: total_number_of_pages) %>
+<% @ac_search_results_pagination = Components::AcSearchResultsPagination.new(params: params, current_page: @ac_vehicle_search.current_page, total_number_of_pages: @ac_vehicle_search.total_number_of_pages) %>
 
 <div class="ch-row" data-reactid="1603">
   <div class="ch-col--lg-9 ch-col--lg-push-3" data-reactid="1604">

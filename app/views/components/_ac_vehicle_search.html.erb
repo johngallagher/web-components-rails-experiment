@@ -10,7 +10,7 @@
 
 <!-- Template --!>
 <%= form_tag "/vehicles", method: :get, id: "search", name: "search", data: { component: "ac_vehicle_search" }.merge(@ac_vehicle_search.current_options) do %>
-  <%= render 'components/ac_vehicle_search_banner', title: @ac_vehicle_search.title  %>
+  <%= render 'components/ac_vehicle_search_banner'  %>
   <div class="ch-container">
 
     <div class="ch-row">
@@ -18,7 +18,7 @@
       <%= render 'components/ac_vehicle_search_filter' %>
     </div>
 
-    <%= render 'components/ac_search_results_pagination', current_page: @ac_vehicle_search.current_page, total_number_of_pages: @ac_vehicle_search.total_number_of_pages %>
+    <%= render 'components/ac_search_results_pagination' %>
 
   </div>
 <% end %>

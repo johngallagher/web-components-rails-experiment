@@ -9,6 +9,10 @@ class Api::Components::AcVehicleSearchesController < ApplicationController
       { 
         replace: "ac_vehicle_search_filter",
         with_content: render_to_string(partial: "components/ac_vehicle_search_filter")
+      },
+      {
+        replace: 'ac_vehicle_search_banner',
+        with_content: render_to_string(partial: "components/ac_vehicle_search_banner")
       }
     ]
   end
