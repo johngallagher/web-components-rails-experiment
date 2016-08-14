@@ -31,6 +31,14 @@ function queryComponent(name) {
   return document.querySelector('[data-component="' + name + '"]');
 }
 
+function thisComponent() {
+  return queryComponent("ac_vehicle_search");
+}
+
+function state() {
+  return thisComponent().dataset;
+}
+
 function executeReplacements(replacements) {
   replacements.map(function(replacement) {
     var component_to_replace = replacement.replace;
@@ -40,15 +48,13 @@ function executeReplacements(replacements) {
 }
 
 function updateStateFromElement(element) {
-  var thisComponent = queryComponent("ac_vehicle_search");
-  thisComponent.setAttribute("data-" + element.name, element.value);
+  return thisComponent().setAttribute("data-" + element.name, element.value);
 }
 
-function stateAsQueryParams() {
+function asQueryParams(keyValueObject) {
   var queryParams = []
-  var state = queryComponent("ac_vehicle_search").dataset;
-  for(var key in state) {
-    queryParams.push(key + "=" + state[key]);
+  for(var key in keyValueObject) {
+    queryParams.push(key + "=" + keyValueObject[key]);
   }
   return queryParams.join("&");
 }
@@ -58,7 +64,7 @@ function refreshComponent() {
   oReq.onload = function (e) {
     executeReplacements(e.target.response);
   };
-  oReq.open('GET', "/api/components/ac_vehicle_search?" + stateAsQueryParams(), true);
+  oReq.open('GET', "/api/components/ac_vehicle_search?" + asQueryParams(state()), true);
   oReq.responseType='json';
   oReq.send();
 }
