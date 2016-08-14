@@ -5,7 +5,7 @@ class Components::AcSearchResultsPagination
   def initialize(state:, total_number_of_pages:, current_page:)
     @state = state
     @total_number_of_pages = total_number_of_pages
-    @current_page = current_page.to_i
+    @current_page = current_page
   end
 
   def first_page? 

@@ -9,6 +9,7 @@
       <% (1..5).each do |page_number| %>
         <%= @ac_search_results_pagination.page_link(page_number) %>
       <% end %>
+
       <%= @ac_search_results_pagination.next_page_link %>
       <%= @ac_search_results_pagination.last_page_link %>
     </nav>

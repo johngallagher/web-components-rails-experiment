@@ -11,6 +11,6 @@ class Components::AcVehicleSearch
     @title = response["title"]
     @state = state
     @total_number_of_pages = response["pagination"]["totalNumberOfPages"]
-    @current_page = response["pagination"]["currentPage"]
+    @current_page = response["pagination"]["currentPage"].to_i
   end
 end
