@@ -11,8 +11,8 @@ class Components::AcVehicleSearch
     @count = response["count"]
     @search_types = response["searchCriteria"]["availableOptions"]["searchTypes"]
     @title = response["title"]
-    @state = state
     @total_number_of_pages = response["pagination"]["totalNumberOfPages"]
     @current_page = response["pagination"]["currentPage"].to_i
+    @current_options = response["searchCriteria"]["currentOptions"].symbolize_keys
   end
 end

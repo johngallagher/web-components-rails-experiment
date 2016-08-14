@@ -1,4 +1,4 @@
-<div class="ch-col--md-12 ch-col--lg-3 ch-col--lg-pull-9" data-reactid="108">
+<%= content_tag(:div, class: "ch-col--md-12 ch-col--lg-3 ch-col--lg-pull-9", data: { component: "ac_vehicle_search_filter" }.merge(@ac_vehicle_search.current_options)) do %>
   <div class="ac-filters" data-reactid="109">
     <div class="ac-filters__mask" data-reactid="110">
     </div>
@@ -17,21 +17,21 @@
             <label id="searchTypeLabel" for="search-type" class="ch-form__control-label" data-reactid="119">Car type
             </label>
             <div data-reactid="120">
-              <%= select_tag :search_type, options_for_select(search_types, search_type), class: "ch-form__control", onchange: "this.form.submit();" %>
+              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.current_options[:searchType]), class: "ch-form__control", onchange: "filtersChanged(this);"  %>
             </div>
           </div>
           <div class="ch-form__group--sm" data-reactid="130">
             <label for="make" class="ch-form__control-label" data-reactid="131">Make
             </label>
             <div data-reactid="132">
-              <%= select_tag :make, options_for_select(makes, make), class: "ch-form__control", onchange: "this.form.submit();" %>
+              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.current_options[:make]), class: "ch-form__control", onchange: "filtersChanged(this);" %>
             </div>
           </div>
           <div class="ch-form__group--sm" data-reactid="160">
             <label for="model" class="ch-form__control-label" data-reactid="161">Model
             </label>
             <div data-reactid="162">
-              <%= select_tag :model, options_for_select(models, model), class: "ch-form__control", onchange: "this.form.submit();" %>
+              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.current_options[:model]), class: "ch-form__control", onchange: "filtersChanged(this);" %>
             </div>
           </div>
           <div class="ch-form__group--sm" data-reactid="166">
@@ -734,4 +734,5 @@
       </div>
     </div>
   </div>
-</div>
+<% end %>
+

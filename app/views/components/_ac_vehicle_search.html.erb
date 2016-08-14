@@ -1,16 +1,72 @@
+<!-- Stylesheets --!>
 <link rel="stylesheet" media="screen" href="http://www.arnoldclark.com/assets/vehicles/index-8f935f470f5425626fa70f79a9786b021cc1cfcccefe62252344ba55a9ed1cf5.css">
-<% @ac_vehicle_search = Components::AcVehicleSearch.new(state: params) %>
+<!-- End Stylesheets --!>
 
-<form id="search" name="search" class="ch-form" action="/vehicles" method="get">
+
+<!-- Ruby Model --!>
+<% @ac_vehicle_search = Components::AcVehicleSearch.new(params: params) %>
+<!-- End Ruby Model --!>
+
+
+<!-- Template --!>
+<%= form_tag "/vehicles", method: :get, id: "search", name: "search", data: { component: "ac_vehicle_search" }.merge(@ac_vehicle_search.current_options) do %>
   <%= render 'components/ac_vehicle_search_banner', title: @ac_vehicle_search.title  %>
   <div class="ch-container">
 
     <div class="ch-row">
-      <%= render 'components/ac_vehicle_search_results', vehicles: @ac_vehicle_search.vehicles %>
-      <%= render 'components/ac_vehicle_search_filter', search_type: search_type, make: make, model: model, search_types: @ac_vehicle_search.search_types, makes: @ac_vehicle_search.makes, models: @ac_vehicle_search.models %>
+      <%= render 'components/ac_vehicle_search_results' %>
+      <%= render 'components/ac_vehicle_search_filter' %>
     </div>
 
     <%= render 'components/ac_search_results_pagination', current_page: @ac_vehicle_search.current_page, total_number_of_pages: @ac_vehicle_search.total_number_of_pages %>
 
   </div>
-</form>
+<% end %>
+<!-- End Template --!>
+
+<!-- Javascripts --!>
+<script>
+
+function queryComponent(name) {
+  return document.querySelector('[data-component="' + name + '"]');
+}
+
+function executeReplacements(replacements) {
+  replacements.map(function(replacement) {
+    var component_to_replace = replacement.replace;
+    var newContent = replacement.with_content;
+    queryComponent(component_to_replace).outerHTML = newContent;
+  });
+}
+
+function updateStateFromElement(element) {
+  var thisComponent = queryComponent("ac_vehicle_search");
+  thisComponent.setAttribute("data-" + element.name, element.value);
+}
+
+function stateAsQueryParams() {
+  var queryParams = []
+  var state = queryComponent("ac_vehicle_search").dataset;
+  for(var key in state) {
+    queryParams.push(key + "=" + state[key]);
+  }
+  return queryParams.join("&");
+}
+
+function refreshComponent() {
+  var oReq = new XMLHttpRequest();
+  oReq.onload = function (e) {
+    executeReplacements(e.target.response);
+  };
+  oReq.open('GET', "/api/components/ac_vehicle_search?" + stateAsQueryParams(), true);
+  oReq.responseType='json';
+  oReq.send();
+}
+
+function filtersChanged(element) {
+  updateStateFromElement(element);
+  refreshComponent();
+}
+
+</script>
+<!-- End Javascripts --!>
