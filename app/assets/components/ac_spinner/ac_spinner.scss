@@ -1,0 +1,53 @@
+@import "variables";
+
+.ac-spinner__mask {
+  background-color: #fafafa;
+  bottom: 0;
+  left: 0;
+  opacity: .95;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.ac-spinner__fixed {
+  left: 0;
+  margin-top: -96px;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+}
+
+.ac-spinner__text {
+  color: $brand-secondary;
+  display: block;
+  font-size: $font-size-brand;
+  font-weight: $font-weight-medium;
+  text-align: center;
+
+  &:before {
+    animation: spin 1.2s cubic-bezier(.2, .4, .8, .6) infinite;
+    background-color: $white;
+    background-image: url("/assets/loading-spinner-fd99a59cc16945d2ce70856ccf78f915fa5b406598f414af6cde0a6e93559497.svg");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    border: 2px solid $gray-light;
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 144px;
+    margin: 0 auto $rhythm-sm;
+    width: 144px;
+  }
+}
+.ac-spinner {
+  display: none;
+}
+
+.ac-spinner.component-loading {
+  display: block;
+}
+
