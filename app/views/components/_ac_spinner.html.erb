@@ -1,8 +1,6 @@
-<% 
-  style = (defined?(loading) && loading) ? "" : "display: none;" 
-%>
+<%= stylesheet_for_component("ac_spinner") %>
 
-<%= content_tag(:div, class: "ac-spinner", style: style, data: { component: "ac_spinner" }) do %>
+<div class="ac-spinner" data-component="ac_spinner">
   <div ref="loading" class="ac-spinner__mask"></div>
   <div class="ac-spinner__fixed">
     <div class="ch-container">
@@ -13,5 +11,5 @@
       </div>
     </div>
   </div>
-<% end %>
+</div>
 

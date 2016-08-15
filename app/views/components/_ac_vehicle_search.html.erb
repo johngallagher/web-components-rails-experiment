@@ -1,15 +1,8 @@
-<!-- Stylesheets --!>
-<link rel="stylesheet" media="screen" href="http://www.arnoldclark.com/assets/vehicles/index-8f935f470f5425626fa70f79a9786b021cc1cfcccefe62252344ba55a9ed1cf5.css">
-<!-- End Stylesheets --!>
+<%= stylesheet_for_component("ac_vehicle_search") %>
 
-
-<!-- Ruby Model --!>
 <% @ac_vehicle_search = Components::AcVehicleSearch.new(params: params) %>
-<!-- End Ruby Model --!>
 
-
-<!-- Template --!>
-<%= form_tag "/vehicles", method: :get, id: "search", name: "search", data: { component: "ac_vehicle_search" }.merge(@ac_vehicle_search.current_options) do %>
+<%= form_tag "/vehicles", method: :get, id: "search", name: "search", data: @ac_vehicle_search.data_attributes do %>
   <%= render 'components/ac_vehicle_search_banner'  %>
   <div class="ch-container">
 
