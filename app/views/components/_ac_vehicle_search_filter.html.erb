@@ -17,21 +17,21 @@
             <label id="searchTypeLabel" for="search-type" class="ch-form__control-label" data-reactid="119">Car type
             </label>
             <div data-reactid="120">
-              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.current_options[:searchType]), class: "ch-form__control", onchange: "filtersChanged(this);"  %>
+              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.current_options[:searchType]), class: "ch-form__control", onchange: "AcVehicleSearch.filterDidChange(this);"  %>
             </div>
           </div>
           <div class="ch-form__group--sm" data-reactid="130">
             <label for="make" class="ch-form__control-label" data-reactid="131">Make
             </label>
             <div data-reactid="132">
-              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.current_options[:make]), class: "ch-form__control", onchange: "filtersChanged(this);" %>
+              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.current_options[:make]), class: "ch-form__control", onchange: "AcVehicleSearch.filterDidChange(this);" %>
             </div>
           </div>
           <div class="ch-form__group--sm" data-reactid="160">
             <label for="model" class="ch-form__control-label" data-reactid="161">Model
             </label>
             <div data-reactid="162">
-              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.current_options[:model]), class: "ch-form__control", onchange: "filtersChanged(this);" %>
+              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.current_options[:model]), class: "ch-form__control", onchange: "AcVehicleSearch.filterDidChange(this);" %>
             </div>
           </div>
           <div class="ch-form__group--sm" data-reactid="166">

@@ -27,60 +27,63 @@
 <!-- Javascripts --!>
 <script>
 
-function queryComponent(name) {
-  return document.querySelector('[data-component="' + name + '"]');
-}
+var Nostalgia = {
 
-function thisComponent() {
-  return queryComponent("ac_vehicle_search");
-}
+  queryComponent: function(name) {
+    return document.querySelector('[data-component="' + name + '"]');
+  },
 
-function state() {
-  return thisComponent().dataset;
-}
+  executeReplacements: function(replacements) {
+    replacements.map(function(action) {
+      this.queryComponent(action.replace).outerHTML = action.with_content;
+    }.bind(this));
+  },
 
-function executeReplacements(replacements) {
-  replacements.map(function(replacement) {
-    var component_to_replace = replacement.replace;
-    var newContent = replacement.with_content;
-    queryComponent(component_to_replace).outerHTML = newContent;
-  });
-}
+  asQueryParams: function(keyValueObject) {
+    var queryParams = []
+      for(var key in keyValueObject) {
+        queryParams.push(key + "=" + keyValueObject[key]);
+      }
+    return queryParams.join("&");
+  },
 
-function updateStateFromElement(element) {
-  return thisComponent().setAttribute("data-" + element.name, element.value);
-}
+  loadInReplacementsFrom: function(url) {
+    var request = new XMLHttpRequest();
+    request.onload = function (e) {
+      this.executeReplacements(e.target.response);
+    }.bind(this);
+    request.open('GET', url, true);
+    request.responseType='json';
+    request.send();
+  },
 
-function asQueryParams(keyValueObject) {
-  var queryParams = []
-  for(var key in keyValueObject) {
-    queryParams.push(key + "=" + keyValueObject[key]);
+  didStartLoading: function(name) {
+    var url = "/api/components/" + name + "_loading";
+    this.loadInReplacementsFrom(url);
+  },
+
+  refresh: function(component) {
+    var url = "/api/components/" + component + "?" + this.asQueryParams(this.stateFor(component));
+    this.loadInReplacementsFrom(url);
+  },
+
+  stateFor: function(name) {
+    return this.queryComponent(name).dataset;
+  },
+
+  updateStateFor: function(name, newState) {
+    return this.queryComponent(name).setAttribute("data-" + newState.key, newState.value);
   }
-  return queryParams.join("&");
 }
 
-function loadInReplacementsFrom(url) {
-  var oReq = new XMLHttpRequest();
-  oReq.onload = function (e) {
-    executeReplacements(e.target.response);
-  };
-  oReq.open('GET', url, true);
-  oReq.responseType='json';
-  oReq.send();
-}
+var AcVehicleSearch = {
+  name: "ac_vehicle_search",
 
-function indicateComponentLoading() {
-  loadInReplacementsFrom("/api/components/ac_vehicle_search_loading");
-}
-
-function refreshComponent() {
-  loadInReplacementsFrom("/api/components/ac_vehicle_search?" + asQueryParams(state()));
-}
-
-function filtersChanged(element) {
-  indicateComponentLoading();
-  updateStateFromElement(element);
-  refreshComponent();
+  filterDidChange: function(filter) {
+    Nostalgia.didStartLoading(this.name);
+    Nostalgia.updateStateFor(this.name, { key: filter.name, value: filter.value });
+    Nostalgia.refresh(this.name);
+  }
 }
 
 </script>
