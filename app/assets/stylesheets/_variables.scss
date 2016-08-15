@@ -1,0 +1,98 @@
+
+$line-height-base:          24px !default;
+$line-height-xxs:           6px !default;
+$line-height-xs:            12px !default;
+$line-height-sm:            18px !default;
+$line-height-lg:            30px !default;
+$line-height-xl:            36px !default;
+
+$rhythm-base: $line-height-base !default; // 24 - SAME
+$rhythm-xxs:  $line-height-xxs !default; // 6 - NEW
+
+$rhythm-xs:   $line-height-xs !default; // 12 - 6
+$rhythm-sm:   $line-height-sm !default; // 18 - 12
+
+$rhythm-lg:   $line-height-lg !default; // 30
+$rhythm-xl:   $line-height-xl !default; // 36
+
+$font-family-sans-serif:    'Gotham A', 'Gotham B', Gotham, Verdana, sans-serif !default;
+
+@if global-variable-exists(internal) {
+  $font-family-sans-serif:  Verdana, sans-serif;
+}
+
+$font-family-base:          $font-family-sans-serif !default;
+
+$font-size-base:            16px;
+$font-size-xs:              ceil($font-size-base * .75) !default; // 12px
+$font-size-sm:              ceil($font-size-base * .875) !default; // 14px
+$font-size-lg:              ceil($font-size-base * 1.125) !default; // 18px
+$font-size-xl:              ceil($font-size-base * 1.375) !default; // 22px
+
+$font-size-brand:           ceil($font-size-base * 1.5) !default; // 24px
+
+$font-size-h1-xs: 26px !default;
+$font-size-h2-xs: 22px !default;
+$font-size-h3-xs: 18px !default;
+$font-size-h4-xs: 16px !default;
+$font-size-h5-xs: 14px !default;
+$font-size-h6-xs: 14px !default;
+
+$font-size-h1: 30px !default;
+$font-size-h2: 26px !default;
+$font-size-h3: 22px !default;
+$font-size-h4: 18px !default;
+$font-size-h5: 16px !default;
+$font-size-h6: 16px !default;
+
+$font-weight-book:          400 !default;
+$font-weight-medium:        500 !default;
+$font-weight-bold:          600 !default;
+
+@if global-variable-exists(internal) {
+  $font-weight-book:        normal;
+  $font-weight-medium:      bold;
+  $font-weight-bold:        bold;
+}
+
+$font-weight-base:          $font-weight-book !default;
+
+$headings-font-family:      inherit !default;
+$headings-font-weight:      $font-weight-medium !default;
+$headings-margin-vertical:  $rhythm-xs !default;
+$headings-color:            inherit !default;
+
+$line-width-max: 548px !default;
+
+// SHADES
+$black:           #000;
+$white:           #fff;
+
+// GRAY
+$gray-base:       #979797 !default;
+$gray-darker:     #222a2a !default;
+$gray-dark:       #2d3737 !default;
+$gray:            $gray-base !default;
+$gray-light:      #e5e5e5 !default;
+$gray-lighter:    #f2f2f2 !default;
+
+// AC
+$ac-primary:      #ffde00;
+$ac-secondary:    $gray-dark;
+$ac-border-width: 6px;
+
+// AC SECONDARY
+$ac-sky-blue: #00a1e0 !default;
+$ac-teal: #00b4bb !default;
+$ac-violet: #87189d !default;
+$ac-magenta: #d41568 !default;
+
+$pricing-color: #155991 !default;
+$tel-color: #155991 !default; 
+
+// UI
+$brand-primary:    $ac-sky-blue !default;
+$brand-secondary:  #607882 !default;
+$brand-success:    #12b447 !default;
+$brand-danger:     #c23131 !default;
+
