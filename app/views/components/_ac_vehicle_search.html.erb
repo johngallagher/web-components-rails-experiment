@@ -22,69 +22,16 @@
 
   </div>
 <% end %>
-<!-- End Template --!>
 
-<!-- Javascripts --!>
 <script>
-
-var Nostalgia = {
-
-  queryComponent: function(name) {
-    return document.querySelector('[data-component="' + name + '"]');
-  },
-
-  executeReplacements: function(replacements) {
-    replacements.map(function(action) {
-      this.queryComponent(action.replace).outerHTML = action.with_content;
-    }.bind(this));
-  },
-
-  asQueryParams: function(keyValueObject) {
-    var queryParams = []
-      for(var key in keyValueObject) {
-        queryParams.push(key + "=" + keyValueObject[key]);
-      }
-    return queryParams.join("&");
-  },
-
-  loadInReplacementsFrom: function(url) {
-    var request = new XMLHttpRequest();
-    request.onload = function (e) {
-      this.executeReplacements(e.target.response);
-    }.bind(this);
-    request.open('GET', url, true);
-    request.responseType='json';
-    request.send();
-  },
-
-  didStartLoading: function(name) {
-    var url = "/api/components/" + name + "_loading";
-    this.loadInReplacementsFrom(url);
-  },
-
-  refresh: function(component) {
-    var url = "/api/components/" + component + "?" + this.asQueryParams(this.stateFor(component));
-    this.loadInReplacementsFrom(url);
-  },
-
-  stateFor: function(name) {
-    return this.queryComponent(name).dataset;
-  },
-
-  updateStateFor: function(name, newState) {
-    return this.queryComponent(name).setAttribute("data-" + newState.key, newState.value);
-  }
-}
 
 var AcVehicleSearch = {
   name: "ac_vehicle_search",
 
   filterDidChange: function(filter) {
-    Nostalgia.didStartLoading(this.name);
     Nostalgia.updateStateFor(this.name, { key: filter.name, value: filter.value });
-    Nostalgia.refresh(this.name);
+    Nostalgia.reload(this.name);
   }
 }
 
 </script>
-<!-- End Javascripts --!>
