@@ -150,3 +150,7 @@ var Nostalgia = {
   }
 
 };
+
+document.addEventListener("DOMContentLoaded", function() { 
+  Nostalgia.init();
+});
