@@ -5,17 +5,48 @@ var Nostalgia = {
     // In here start to listen to component events
   },
 
-  componentsWithin: function(component) {
-    return document.querySelectorAll('[data-component="' + component + '"] [data-component]');
+  triggerSelectChanged: function(select) {
+    var componentChanged = this.parentComponent(select);
+    this.updateStateFor(componentChanged, { key: select.name, value: select.value });
+    this.reload(componentChanged);
   },
 
-  component: function(name) {
-    return document.querySelector('[data-component="' + name + '"]');
+  reload: function(componentChanged) {
+    this.markComponentAsLoading(componentChanged);
+
+    if(this.shouldReloadOthers(componentChanged)) {
+      var componentUpdateUrl = "component_updates?" + this.asQueryParams(this.stateFor(componentChanged));
+      this.loadInReplacementsFrom(componentUpdateUrl);
+    }
+  },
+
+  shouldReloadOthers: function(component) {
+    return component.dataset.onchangeReload !== undefined;
+  },
+
+  getComponentsWithin: function(component) {
+    if(this.isName(component)) {
+      return document.querySelectorAll('[data-component="' + component + '"] [data-component]');
+    } else {
+      return document.querySelectorAll('[data-component="' + component.dataset.component + '"] [data-component]');
+    }
+  },
+
+  getComponent: function(component) {
+    if(this.isName(component)) {
+      return document.querySelector('[data-component="' + component + '"]');
+    } else {
+      return component;
+    }
+  },
+
+  isName: function(component) {
+    return (typeof component === "string");
   },
 
   executeReplacements: function(replacements) {
     replacements.map(function(action) {
-      this.component(action.replace).outerHTML = action.with_content;
+      this.getComponent(action.replace).outerHTML = action.with_content;
     }.bind(this));
   },
 
@@ -32,62 +63,60 @@ var Nostalgia = {
     var request = new XMLHttpRequest();
     request.onload = function (e) {
       this.executeReplacements(e.target.response.replacements);
-      this.didLoad(e.target.response.component);
+      this.markComponentAsLoaded(e.target.response.component);
     }.bind(this);
     request.open('GET', url, true);
     request.responseType='json';
     request.send();
   },
 
-  didLoad: function(name) {
-    this.markAsLoaded(this.component(name));
+  markComponentAsLoaded: function(componentOrName) {
+    var component = this.getComponent(componentOrName);
+    this.markNodeAsLoaded(component);
+
     var index;
-    var childComponents = this.componentsWithin(name);
+    var childComponents = this.getComponentsWithin(component);
     for (index = 0; index < childComponents.length; ++index) {
-      this.markAsLoaded(childComponents[index]);
+      this.markNodeAsLoaded(childComponents[index]);
     }
   },
 
-  willLoad: function(name) {
-    this.markAsLoading(this.component(name));
+  markComponentAsLoading: function(componentOrName) {
+    var component = this.getComponent(componentOrName);
+    this.markNodeAsLoading(component);
+
     var index;
-    var childComponents = this.componentsWithin(name);
+    var childComponents = this.getComponentsWithin(component);
     for (index = 0; index < childComponents.length; ++index) {
-      this.markAsLoading(childComponents[index]);
+      this.markNodeAsLoading(childComponents[index]);
+    }
+
+    if(this.shouldReloadOthers(component)) {
+      var dependentComponents = JSON.parse(component.dataset.onchangeReload).map(function(name) { return this.getComponent(name); }.bind(this));
+      for (index = 0; index < dependentComponents.length; ++index) {
+        this.markComponentAsLoading(dependentComponents[index]);
+      }
     }
   },
 
-  markAsLoading: function(node) {
+  markNodeAsLoading: function(node) {
     node.classList.add(this.LOADING_CLASS);
   },
 
-  markAsLoaded: function(node) {
+  markNodeAsLoaded: function(node) {
     node.classList.remove(this.LOADING_CLASS);
   },
 
-  reload: function(component) {
-    this.willLoad(component);
-    var url = "/api/components/" + component + "?" + this.asQueryParams(this.stateFor(component));
-    this.loadInReplacementsFrom(url);
-  },
-
-  stateFor: function(name) {
-    return this.component(name).dataset;
+  stateFor: function(component) {
+    return this.getComponent(component).dataset;
   },
 
   updateStateFor: function(name, newState) {
-    return this.component(name).setAttribute("data-" + newState.key, newState.value);
+    return this.getComponent(name).setAttribute("data-" + newState.key, newState.value);
   },
 
-  registerComponent: function(component) {
-    this.setupComponentReloading(component);
-  },
-
-  setupComponentReloading: function(component) {
-    document.addEventListener(component.reloadOn, function(e) {
-      this.updateStateFor(component.name, e.detail);
-      this.reload(component.name);
-    }.bind(this));
+  parentComponent: function(node) {
+    return this.getComponent(this.getParentComponentName(node));
   },
 
   getParentComponentName: function(node) {
@@ -103,9 +132,4 @@ var Nostalgia = {
     return currentNode.getAttribute("data-component");
   },
 
-  triggerDidChange: function(nodeChanged) {
-    var componentNameChanged = this.getParentComponentName(nodeChanged);
-    var changeEvent = new CustomEvent(componentNameChanged + '.did_change', { detail: { key: nodeChanged.name, value: nodeChanged.value }});
-    document.dispatchEvent(changeEvent);
-  }
 };

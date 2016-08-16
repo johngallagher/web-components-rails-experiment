@@ -41,8 +41,8 @@ module Components
       @current_options = response["searchCriteria"]["currentOptions"].symbolize_keys
     end
 
-    def data_attributes
-      super.merge(current_options)
+    def state
+      @current_options
     end
   end
 end
