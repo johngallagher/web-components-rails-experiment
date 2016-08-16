@@ -1,16 +1,12 @@
 module Components
   class AcVehicleSearch
+    FIELDS = ['make', 'model', 'search_type', 'age', 'transmission', 'fuel_type', 'distance', 'payment_type', 'min_price', 'max_price', 'location', 'photos_only', 'unreserved_only', 'keywords', 'body_type', 'mpg', 'colour', 'roadtax_cost', 'mileage', 'doors', 'seats', 'min_engine_size', 'max_engine_size', 'dor', 'branch_id', 'branch_name', 'sort_order']
     attr_reader :vehicles, :makes, :models, :count, :search_types, :title, :total_number_of_pages, :current_page, :current_options
 
     def initialize(params:)
-      #before_search = Time.now
-      whitelisted_params = params.permit('make', 'model', 'search_type', 'age', 'transmission', 'fuel_type', 'distance').to_h
-      url = "http://www.arnoldclark.com/used-cars/search.json?#{whitelisted_params.to_query}"
+      url = "http://www.arnoldclark.com/used-cars/search.json?#{params.permit(FIELDS).to_h.inject({}) { |memo, (field, value)| value == '[""]' ? memo.merge(field => '') : memo.merge(field => value) }.to_query}"
       response = JSON.parse(open(url).read)
       Rails.logger.debug("Url we called is #{url}")
-      #response = JSON.parse(dummy_json)
-      #after_search = Time.now
-      #Rails.logger.debug("Time to search #{(after_search - before_search) * 1000}")
 
       @vehicles = response["searchResults"].map { |result| OpenStruct.new(result) }
       @makes = response["searchCriteria"]["availableOptions"]["makes"]

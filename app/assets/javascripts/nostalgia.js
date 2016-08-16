@@ -61,11 +61,16 @@ var Nostalgia = {
     }.bind(this));
   },
 
+  toSnakeCase: function(string) {
+    return string.replace(/([A-Z])/g, function(match) { return "_" + match.toLowerCase(); });
+  },
+
+
   asQueryParams: function(keyValueObject) {
     var key;
     var queryParams = [];
     for(key in keyValueObject) {
-      queryParams.push(key + "=" + keyValueObject[key]);
+      queryParams.push(this.toSnakeCase(key) + "=" + keyValueObject[key]);
     }
     return queryParams.join("&");
   },
