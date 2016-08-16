@@ -2,7 +2,22 @@ var Nostalgia = {
   LOADING_CLASS: "component-loading",
 
   init: function() {
-    // In here start to listen to component events
+    var index;
+    var components = this.getAllComponents();
+    for (index = 0; index < components.length; ++index) {
+      if(this.noReloadDependencies(components[index])) { continue; }
+
+      var controlsInComponent = components[index].querySelectorAll("select");
+      
+      var controlIndex;
+      for (controlIndex = 0; controlIndex < controlsInComponent.length; ++controlIndex) {
+        controlsInComponent[controlIndex].setAttribute('onchange', "Nostalgia.reloadDependentComponents(this)");
+      }
+    }
+  },
+
+  reloadDependentComponents: function(control) {
+    this.triggerSelectChanged(control);
   },
 
   triggerSelectChanged: function(select) {
@@ -20,8 +35,16 @@ var Nostalgia = {
     }
   },
 
+  noReloadDependencies: function(component) {
+    return !this.shouldReloadOthers(component);
+  },
+
   shouldReloadOthers: function(component) {
     return component.dataset.onchangeReload !== undefined;
+  },
+
+  getAllComponents: function() {
+    return document.querySelectorAll('[data-component]');
   },
 
   getChildComponents: function(component) {
@@ -30,10 +53,6 @@ var Nostalgia = {
 
   getComponent: function(name) {
     return document.querySelector('[data-component="' + name + '"]');
-  },
-
-  isName: function(component) {
-    return (typeof component === "string");
   },
 
   executeReplacements: function(replacements) {
@@ -56,6 +75,7 @@ var Nostalgia = {
     request.onload = function (e) {
       this.executeReplacements(e.target.response.replacements);
       this.markComponentAsLoaded(this.getComponent(e.target.response.component));
+      this.init();
     }.bind(this);
     request.open('GET', url, true);
     request.responseType='json';
