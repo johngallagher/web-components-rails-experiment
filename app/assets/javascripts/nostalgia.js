@@ -91,10 +91,17 @@ var Nostalgia = {
       this.markNodeAsLoading(childComponents[index]);
     }
 
-    if(this.shouldReloadOthers(component)) {
-      var dependentComponents = JSON.parse(component.dataset.onchangeReload).map(function(name) { return this.getComponent(name); }.bind(this));
-      for (index = 0; index < dependentComponents.length; ++index) {
-        this.markComponentAsLoading(dependentComponents[index]);
+    this.markDependentComponentsAsLoading(component);
+  },
+
+  markDependentComponentsAsLoading: function(component) {
+    if(!this.shouldReloadOthers(component)) { return; }
+
+    var index;
+    var dependentComponentNames = JSON.parse(component.dataset.onchangeReload);
+    for (index = 0; index < dependentComponentNames.length; ++index) {
+      if (dependentComponentNames[index] !== component.dataset.component) {
+        this.markComponentAsLoading(dependentComponentNames[index]);
       }
     }
   },
