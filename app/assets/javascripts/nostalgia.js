@@ -1,6 +1,10 @@
 var Nostalgia = {
   LOADING_CLASS: "component-loading",
 
+  init: function() {
+    // In here start to listen to component events
+  },
+
   componentsWithin: function(component) {
     return document.querySelectorAll('[data-component="' + component + '"] [data-component]');
   },
