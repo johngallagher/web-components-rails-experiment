@@ -19,21 +19,21 @@
             <label id="searchTypeLabel" for="search-type" class="ch-form__control-label">Car type
             </label>
             <div>
-              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.current_options[:searchType]), class: "ch-form__control", onchange: "AcVehicleSearchFilter.didChange(this);"  %>
+              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.current_options[:searchType]), class: "ch-form__control", onchange: "Nostalgia.triggerDidChange(this);"  %>
             </div>
           </div>
           <div class="ch-form__group--sm">
             <label for="make" class="ch-form__control-label">Make
             </label>
             <div>
-              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.current_options[:make]), class: "ch-form__control", onchange: "AcVehicleSearchFilter.didChange(this);" %>
+              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.current_options[:make]), class: "ch-form__control", onchange: "Nostalgia.triggerDidChange(this);" %>
             </div>
           </div>
           <div class="ch-form__group--sm">
             <label for="model" class="ch-form__control-label">Model
             </label>
             <div>
-              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.current_options[:model]), class: "ch-form__control", onchange: "AcVehicleSearchFilter.didChange(this);" %>
+              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.current_options[:model]), class: "ch-form__control", onchange: "Nostalgia.triggerDidChange(this);" %>
             </div>
           </div>
           <div class="ch-form__group--sm">

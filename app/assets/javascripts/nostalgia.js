@@ -73,5 +73,35 @@ var Nostalgia = {
 
   updateStateFor: function(name, newState) {
     return this.component(name).setAttribute("data-" + newState.key, newState.value);
+  },
+
+  registerComponent: function(component) {
+    this.setupComponentReloading(component);
+  },
+
+  setupComponentReloading: function(component) {
+    document.addEventListener(component.reloadOn, function(e) {
+      this.updateStateFor(component.name, e.detail);
+      this.reload(component.name);
+    }.bind(this));
+  },
+
+  getParentComponentName: function(node) {
+    var currentNode = node;
+    var foundComponent = false;
+    var atRootNode = false;
+    do {
+       currentNode = currentNode.parentNode;
+       foundComponent = currentNode.hasAttribute("data-component");
+       atRootNode = currentNode === undefined;
+    } while(!foundComponent && !atRootNode);
+
+    return currentNode.getAttribute("data-component");
+  },
+
+  triggerDidChange: function(nodeChanged) {
+    var componentNameChanged = this.getParentComponentName(nodeChanged);
+    var changeEvent = new CustomEvent(componentNameChanged + '.did_change', { detail: { key: nodeChanged.name, value: nodeChanged.value }});
+    document.dispatchEvent(changeEvent);
   }
 };
