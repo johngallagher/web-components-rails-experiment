@@ -1,6 +1,3 @@
-<%= stylesheet_for_component("ac_vehicle_search") %>
-<%= javascript_for_component("ac_vehicle_search") %>
-
 <% @ac_vehicle_search = Components::AcVehicleSearch.new(params: params) %>
 
 <%= form_tag "/vehicles", method: :get, id: "search", name: "search", data: @ac_vehicle_search.data_attributes do %>

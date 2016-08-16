@@ -11,3 +11,4 @@
 // about supported directives.
 //
 //= require nostalgia
+//= require_tree ../components
