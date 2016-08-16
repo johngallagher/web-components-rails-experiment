@@ -1,5 +1,4 @@
 class ComponentUpdatesController < ApplicationController
-  layout false
   def show
     @ac_vehicle_search = Components::AcVehicleSearch.new(params: params)
 
