@@ -17,21 +17,21 @@
             <label id="searchTypeLabel" for="search-type" class="ch-form__control-label">Car type
             </label>
             <div>
-              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.current_options[:searchType]), class: "ch-form__control"  %>
+              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.state[:searchType]), class: "ch-form__control"  %>
             </div>
           </div>
           <div class="ch-form__group--sm">
             <label for="make" class="ch-form__control-label">Make
             </label>
             <div>
-              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.current_options[:make]), class: "ch-form__control", onchange: "Nostalgia.triggerSelectChanged(this);" %>
+              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.state[:make]), class: "ch-form__control" %>
             </div>
           </div>
           <div class="ch-form__group--sm">
             <label for="model" class="ch-form__control-label">Model
             </label>
             <div>
-              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.current_options[:model]), class: "ch-form__control", onchange: "Nostalgia.triggerSelectChanged(this);" %>
+              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.state[:model]), class: "ch-form__control" %>
             </div>
           </div>
           <div class="ch-form__group--sm">
@@ -207,34 +207,14 @@
               <label for="fuel-type" class="ch-form__control-label">Fuel type
               </label>
               <div>
-                <select id="fuel-type" name="fuel_type" class="ch-form__control">
-                  <option selected="" value="">Any
-                  </option>
-                  <option value="Petrol">Petrol
-                  </option>
-                  <option value="Diesel">Diesel
-                  </option>
-                  <option value="Hybrid">Hybrid
-                  </option>
-                  <option value="Electric">Electric
-                  </option>
-                </select>
+                <%= select_tag :fuel_type, options_for_select([["Any", ""], ["Petrol", "Petrol"], ["Diesel", "Diesel"], ["Hybrid", "Hybrid"], ["Electric", "Electric"]], @ac_vehicle_search.state[:fuel_type]), class: "ch-form__control" %>
               </div>
             </div>
             <div class="ch-form__group--sm">
               <label for="transmission" class="ch-form__control-label">Gearbox
               </label>
               <div>
-                <select id="transmission" name="transmission" class="ch-form__control">
-                  <option selected="" value="">Any
-                  </option>
-                  <option value="Manual">Manual
-                  </option>
-                  <option value="Automatic">Auto
-                  </option>
-                  <option value="Semi-Automatic">Semi-auto
-                  </option>
-                </select>
+                <%= select_tag :transmission, options_for_select([["Any", ""], ["Manual", "Manual"], ["Auto", "Auto"], ["Semi-Auto", "Semi-Auto"]], @ac_vehicle_search.state[:transmission]), class: "ch-form__control" %>
               </div>
             </div>
             <div class="ch-form__group--sm">
