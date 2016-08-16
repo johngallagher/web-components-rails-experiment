@@ -24,20 +24,12 @@ var Nostalgia = {
     return component.dataset.onchangeReload !== undefined;
   },
 
-  getComponentsWithin: function(component) {
-    if(this.isName(component)) {
-      return document.querySelectorAll('[data-component="' + component + '"] [data-component]');
-    } else {
-      return document.querySelectorAll('[data-component="' + component.dataset.component + '"] [data-component]');
-    }
+  getChildComponents: function(component) {
+    return document.querySelectorAll('[data-component="' + component.dataset.component + '"] [data-component]');
   },
 
-  getComponent: function(component) {
-    if(this.isName(component)) {
-      return document.querySelector('[data-component="' + component + '"]');
-    } else {
-      return component;
-    }
+  getComponent: function(name) {
+    return document.querySelector('[data-component="' + name + '"]');
   },
 
   isName: function(component) {
@@ -63,30 +55,28 @@ var Nostalgia = {
     var request = new XMLHttpRequest();
     request.onload = function (e) {
       this.executeReplacements(e.target.response.replacements);
-      this.markComponentAsLoaded(e.target.response.component);
+      this.markComponentAsLoaded(this.getComponent(e.target.response.component));
     }.bind(this);
     request.open('GET', url, true);
     request.responseType='json';
     request.send();
   },
 
-  markComponentAsLoaded: function(componentOrName) {
-    var component = this.getComponent(componentOrName);
+  markComponentAsLoaded: function(component) {
     this.markNodeAsLoaded(component);
 
     var index;
-    var childComponents = this.getComponentsWithin(component);
+    var childComponents = this.getChildComponents(component);
     for (index = 0; index < childComponents.length; ++index) {
       this.markNodeAsLoaded(childComponents[index]);
     }
   },
 
-  markComponentAsLoading: function(componentOrName) {
-    var component = this.getComponent(componentOrName);
+  markComponentAsLoading: function(component) {
     this.markNodeAsLoading(component);
 
     var index;
-    var childComponents = this.getComponentsWithin(component);
+    var childComponents = this.getChildComponents(component);
     for (index = 0; index < childComponents.length; ++index) {
       this.markNodeAsLoading(childComponents[index]);
     }
@@ -101,7 +91,7 @@ var Nostalgia = {
     var dependentComponentNames = JSON.parse(component.dataset.onchangeReload);
     for (index = 0; index < dependentComponentNames.length; ++index) {
       if (dependentComponentNames[index] !== component.dataset.component) {
-        this.markComponentAsLoading(dependentComponentNames[index]);
+        this.markComponentAsLoading(this.getComponent(dependentComponentNames[index]));
       }
     }
   },
@@ -115,11 +105,11 @@ var Nostalgia = {
   },
 
   stateFor: function(component) {
-    return this.getComponent(component).dataset;
+    return component.dataset;
   },
 
-  updateStateFor: function(name, newState) {
-    return this.getComponent(name).setAttribute("data-" + newState.key, newState.value);
+  updateStateFor: function(component, newState) {
+    return component.setAttribute("data-" + newState.key, newState.value);
   },
 
   parentComponent: function(node) {
@@ -137,6 +127,6 @@ var Nostalgia = {
     } while(!foundComponent && !atRootNode);
 
     return currentNode.getAttribute("data-component");
-  },
+  }
 
 };
