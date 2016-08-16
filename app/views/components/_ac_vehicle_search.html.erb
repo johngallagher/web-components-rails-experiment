@@ -1,4 +1,5 @@
 <%= stylesheet_for_component("ac_vehicle_search") %>
+<%= javascript_for_component("ac_vehicle_search") %>
 
 <% @ac_vehicle_search = Components::AcVehicleSearch.new(params: params) %>
 
@@ -16,15 +17,3 @@
   </div>
 <% end %>
 
-<script>
-
-var AcVehicleSearch = {
-  name: "ac_vehicle_search",
-
-  filterDidChange: function(filter) {
-    Nostalgia.updateStateFor(this.name, { key: filter.name, value: filter.value });
-    Nostalgia.reload(this.name);
-  }
-}
-
-</script>
