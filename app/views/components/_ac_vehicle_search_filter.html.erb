@@ -17,7 +17,7 @@
             <label id="searchTypeLabel" for="search-type" class="ch-form__control-label">Car type
             </label>
             <div>
-              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.state[:searchType]), class: "ch-form__control"  %>
+              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.state[:search_type]), class: "ch-form__control"  %>
             </div>
           </div>
           <div class="ch-form__group--sm">
