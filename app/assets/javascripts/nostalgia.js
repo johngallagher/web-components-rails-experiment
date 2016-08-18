@@ -2,27 +2,24 @@ var Nostalgia = {
   LOADING_CLASS: "component-loading",
 
   init: function() {
-    var index;
-    var components = this.getAllComponents();
-    for (index = 0; index < components.length; ++index) {
-      if(this.noReloadDependencies(components[index])) { continue; }
+    this.getComponentsWithReloadDependencies().forEach(function(component) {
+      this.controlsWithin(component).forEach(function(control) {
+        this.onChangeCallNostalgia(control);
+      }, this);
+    }, this);
+  },
 
-      var controlsInComponent = components[index].querySelectorAll("select");
-      
-      var controlIndex;
-      for (controlIndex = 0; controlIndex < controlsInComponent.length; ++controlIndex) {
-        controlsInComponent[controlIndex].setAttribute('onchange', "Nostalgia.reloadDependentComponents(this)");
-      }
-    }
+  controlsWithin: function(component) {
+    return component.querySelectorAll("select, input");
+  },
+
+  onChangeCallNostalgia: function(control) {
+    control.setAttribute('onchange', "Nostalgia.reloadDependentComponents(this)");
   },
 
   reloadDependentComponents: function(control) {
-    this.triggerSelectChanged(control);
-  },
-
-  triggerSelectChanged: function(select) {
-    var componentChanged = this.parentComponent(select);
-    this.updateStateFor(componentChanged, { key: select.name, value: select.value });
+    var componentChanged = this.parentComponent(control);
+    this.updateStateFor(componentChanged, { key: control.name, value: control.value });
     this.reload(componentChanged);
   },
 
@@ -43,8 +40,8 @@ var Nostalgia = {
     return component.dataset.onchangeReload !== undefined;
   },
 
-  getAllComponents: function() {
-    return document.querySelectorAll('[data-component]');
+  getComponentsWithReloadDependencies: function() {
+    return document.querySelectorAll('[data-component] [data-onchange-reload]');
   },
 
   getChildComponents: function(component) {
@@ -95,20 +92,9 @@ var Nostalgia = {
       var content_to_reload = action.with_elements;
       var index;
       for(index = 0; index < elements_to_reload.length; ++index) {
-        console.log("Replacing " + elements_to_reload[index]);
         elements_to_reload[index].outerHTML = content_to_reload[index];
       }
     }.bind(this));
-  },
-
-  markComponentAsLoaded: function(component) {
-    this.markNodeAsLoaded(component);
-
-    var index;
-    var childComponents = this.getChildComponents(component);
-    for (index = 0; index < childComponents.length; ++index) {
-      this.markNodeAsLoaded(childComponents[index]);
-    }
   },
 
   markComponentAsLoading: function(component) {
@@ -124,7 +110,7 @@ var Nostalgia = {
   },
 
   markDependentComponentsAsLoading: function(component) {
-    if(!this.shouldReloadOthers(component)) { return; }
+    if(this.noReloadDependencies(component)) { return; }
 
     var index;
     var dependentComponentNames = JSON.parse(component.dataset.onchangeReload);
@@ -167,7 +153,6 @@ var Nostalgia = {
 
     return currentNode.getAttribute("data-component");
   }
-
 };
 
 document.addEventListener("DOMContentLoaded", function() { 
