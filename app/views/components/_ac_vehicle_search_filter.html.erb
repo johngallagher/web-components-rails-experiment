@@ -17,21 +17,21 @@
             <label id="searchTypeLabel" for="search-type" class="ch-form__control-label">Car type
             </label>
             <div>
-              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.state[:search_type]), class: "ch-form__control"  %>
+              <%= select_tag :search_type, options_for_select(@ac_vehicle_search.search_types, @ac_vehicle_search.state[:search_type]), class: "ch-form__control", data: { dynamic: true }  %>
             </div>
           </div>
           <div class="ch-form__group--sm">
             <label for="make" class="ch-form__control-label">Make
             </label>
             <div>
-              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.state[:make]), class: "ch-form__control" %>
+              <%= select_tag :make, options_for_select(@ac_vehicle_search.makes, @ac_vehicle_search.state[:make]), class: "ch-form__control", data: { dynamic: true } %>
             </div>
           </div>
           <div class="ch-form__group--sm">
             <label for="model" class="ch-form__control-label">Model
             </label>
             <div>
-              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.state[:model]), class: "ch-form__control" %>
+              <%= select_tag :model, options_for_select(@ac_vehicle_search.models, @ac_vehicle_search.state[:model]), class: "ch-form__control", data: { dynamic: true } %>
             </div>
           </div>
           <div class="ch-form__group--sm">
@@ -207,14 +207,14 @@
               <label for="fuel-type" class="ch-form__control-label">Fuel type
               </label>
               <div>
-                <%= select_tag :fuel_type, options_for_select([["Any", ""], ["Petrol", "Petrol"], ["Diesel", "Diesel"], ["Hybrid", "Hybrid"], ["Electric", "Electric"]], @ac_vehicle_search.state[:fuel_type]), class: "ch-form__control" %>
+                <%= select_tag :fuel_type, options_for_select([["Any", ""], ["Petrol", "Petrol"], ["Diesel", "Diesel"], ["Hybrid", "Hybrid"], ["Electric", "Electric"]], @ac_vehicle_search.state[:fuel_type]), class: "ch-form__control", data: { dynamic: true } %>
               </div>
             </div>
             <div class="ch-form__group--sm">
               <label for="transmission" class="ch-form__control-label">Gearbox
               </label>
               <div>
-                <%= select_tag :transmission, options_for_select([["Any", ""], ["Manual", "Manual"], ["Auto", "Auto"], ["Semi-Auto", "Semi-Auto"]], @ac_vehicle_search.state[:transmission]), class: "ch-form__control" %>
+                <%= select_tag :transmission, options_for_select([["Any", ""], ["Manual", "Manual"], ["Auto", "Auto"], ["Semi-Auto", "Semi-Auto"]], @ac_vehicle_search.state[:transmission]), class: "ch-form__control", data: { dynamic: true } %>
               </div>
             </div>
             <div class="ch-form__group--sm">
