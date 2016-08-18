@@ -3,7 +3,7 @@
     <%= render 'components/ac_spinner' %>
     <% @ac_vehicle_search.vehicles.each do |vehicle| %>
 
-      <div class="ch-clearfix ac-result ac-result--experiment">
+      <div class="ch-clearfix ac-result ac-result--experiment" data-component="ac_vehicle">
         <div class="ac-result__image-wrapper">
           <div class="ac-result__image">
             <a href="<%= "http://www.arnoldclark.com#{vehicle.url}" %>">
@@ -54,7 +54,7 @@
             </div>
           </div>
           <div class="ac-result__shortlist-wrapper">
-            <button class="ch-btn js-off--hide ac-shortlist__button gtm-track ch-btn--sm ch-btn--block" type="button" data-category="Shortlist" data-action="Click" data-label="Add to shortlist">
+            <button class="ch-btn js-off--hide ac-shortlist__button gtm-track ch-btn--sm ch-btn--block" type="button" data-component="ac_shortlist_button" data-cid="<%= rand(1..50000) %>" data-category="Shortlist" data-action="Click" data-label="Add to shortlist">
               <span class="ac-shortlist__button-text">Shortlist
               </span>
             </button>
