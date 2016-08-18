@@ -5,14 +5,14 @@
 
       <div class="ch-clearfix ac-result ac-result--experiment" data-component="ac_vehicle">
         <div class="ac-result__image-wrapper">
-          <div class="ac-result__image">
+          <div class="ac-result__image" data-dynamic="true">
             <a href="<%= "http://www.arnoldclark.com#{vehicle.url}" %>">
               <img class="ch-img--responsive ac-result__image-element" src="<%= vehicle.photo["path"] %>" title="Vehicle details for 2008 (08) Skoda Fabia" alt="Vehicle details for 2008 (08) Skoda Fabia">
             </a>
           </div>
         </div>
         <div class="ac-result__content-wrapper">
-          <h2 class="ac-vehicle__title">
+          <h2 class="ac-vehicle__title" data-dynamic="true">
             <a href="<%= "http://www.arnoldclark.com#{vehicle.url}" %>">
               <%= vehicle.title["name"] %>
               <small class="ac-vehicle__title-variant"><%= vehicle.title["variant"] %>
@@ -43,10 +43,10 @@
                     <span class="ac-pricing__prefix">
                       Only
                     </span>
-                    <span class="ac-money">
+                    <span class="ac-money" data-dynamic="true">
                       <span class="ac-currency">£
                       </span>
-                      3488
+                       <%= vehicle.salesInfo["pricing"]["cashPrice"] %>
                     </span>
                   </span>
                 </div>

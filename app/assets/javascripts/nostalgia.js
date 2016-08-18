@@ -55,12 +55,6 @@ var Nostalgia = {
     return document.querySelector('[data-component="' + name + '"]');
   },
 
-  executeReplacements: function(replacements) {
-    replacements.map(function(action) {
-      this.getComponent(action.replace).outerHTML = action.with_content;
-    }.bind(this));
-  },
-
   toSnakeCase: function(string) {
     return string.replace(/([A-Z])/g, function(match) { return "_" + match.toLowerCase(); });
   },
@@ -79,12 +73,32 @@ var Nostalgia = {
     var request = new XMLHttpRequest();
     request.onload = function (e) {
       this.executeReplacements(e.target.response.replacements);
-      this.markComponentAsLoaded(this.getComponent(e.target.response.component));
+      this.markPageAsLoaded();
       this.init();
     }.bind(this);
     request.open('GET', url, true);
     request.responseType='json';
     request.send();
+  },
+
+  markPageAsLoaded: function() {
+    var elements_loading = document.querySelectorAll("." + this.LOADING_CLASS);
+    var index;
+    for(index = 0; index < elements_loading.length; ++index) {
+      this.markNodeAsLoaded(elements_loading[index]);
+    }
+  },
+
+  executeReplacements: function(replacements) {
+    replacements.map(function(action) {
+      var elements_to_reload = document.querySelectorAll(action.replace);
+      var content_to_reload = action.with_elements;
+      var index;
+      for(index = 0; index < elements_to_reload.length; ++index) {
+        console.log("Replacing " + elements_to_reload[index]);
+        elements_to_reload[index].outerHTML = content_to_reload[index];
+      }
+    }.bind(this));
   },
 
   markComponentAsLoaded: function(component) {
