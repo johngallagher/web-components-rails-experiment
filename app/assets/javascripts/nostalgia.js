@@ -97,8 +97,10 @@ var Nostalgia = {
 
   replaceElementsWithContent: function(elements, contents) {
     elements.forEach(function(element, index) {
-      element.outerHTML = contents[index];
-    }, this);
+      if(element.outerHTML !== contents[index]) {
+        element.outerHTML = contents[index];
+      }
+    });
   },
 
   markComponentAsLoading: function(component) {
