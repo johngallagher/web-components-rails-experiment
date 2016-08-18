@@ -56,7 +56,6 @@ var Nostalgia = {
     return string.replace(/([A-Z])/g, function(match) { return "_" + match.toLowerCase(); });
   },
 
-
   asQueryParams: function(keyValueObject) {
     var key;
     var queryParams = [];
@@ -79,46 +78,55 @@ var Nostalgia = {
   },
 
   markPageAsLoaded: function() {
-    var elements_loading = document.querySelectorAll("." + this.LOADING_CLASS);
-    var index;
-    for(index = 0; index < elements_loading.length; ++index) {
-      this.markNodeAsLoaded(elements_loading[index]);
-    }
+    this.componentsLoading().forEach(function(component) {
+      this.markNodeAsLoaded(component);
+    }, this);
+  },
+
+  componentsLoading: function() {
+    return document.querySelectorAll("." + this.LOADING_CLASS);
   },
 
   executeReplacements: function(replacements) {
-    replacements.map(function(action) {
-      var elements_to_reload = document.querySelectorAll(action.replace);
-      var content_to_reload = action.with_elements;
-      var index;
-      for(index = 0; index < elements_to_reload.length; ++index) {
-        elements_to_reload[index].outerHTML = content_to_reload[index];
-      }
-    }.bind(this));
+    replacements.forEach(function(action) {
+      var elementsToReload = document.querySelectorAll(action.replace);
+      var newContents = action.with_elements;
+      this.replaceElementsWithContent(elementsToReload, newContents);
+    }, this);
+  },
+
+  replaceElementsWithContent: function(elements, contents) {
+    elements.forEach(function(element, index) {
+      element.outerHTML = contents[index];
+    }, this);
   },
 
   markComponentAsLoading: function(component) {
     this.markNodeAsLoading(component);
-
-    var index;
-    var childComponents = this.getChildComponents(component);
-    for (index = 0; index < childComponents.length; ++index) {
-      this.markNodeAsLoading(childComponents[index]);
-    }
-
+    this.markChildComponentsAsLoading(component);
     this.markDependentComponentsAsLoading(component);
+  },
+
+  markChildComponentsAsLoading: function(component) {
+    this.getChildComponents(component).forEach(function(childComponent) {
+      this.markNodeAsLoading(childComponent);
+    }, this);
   },
 
   markDependentComponentsAsLoading: function(component) {
     if(this.noReloadDependencies(component)) { return; }
 
-    var index;
-    var dependentComponentNames = JSON.parse(component.dataset.onchangeReload);
-    for (index = 0; index < dependentComponentNames.length; ++index) {
-      if (dependentComponentNames[index] !== component.dataset.component) {
-        this.markComponentAsLoading(this.getComponent(dependentComponentNames[index]));
+    var ourComponentName = component.dataset.component;
+
+    this.dependentComponentNames(component).forEach(function(name) {
+      if (name !== ourComponentName) {
+        this.markComponentAsLoading(this.getComponent(name));
       }
-    }
+    }, this);
+  },
+
+  dependentComponentNames: function(component) {
+    return JSON.parse(component.dataset.onchangeReload);
   },
 
   markNodeAsLoading: function(node) {
