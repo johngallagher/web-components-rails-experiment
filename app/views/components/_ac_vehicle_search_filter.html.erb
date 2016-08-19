@@ -35,19 +35,19 @@
             </div>
           </div>
           <div class="ch-form__group--sm">
-            <div class="ch-checkbox">
+            <div class="ch-checkbox" data-dynamic="true">
               <label for="photos_only">
                 <input type="hidden" name="photos_only" value="false">
                 <input type="checkbox" id="photos_only" name="photos_only" class="ch-checkbox__input" value="true">
                 <span class="ch-checkbox__switch">
                 </span>
                 Hide cars without images
-                
+
               </label>
             </div>
           </div>
           <div class="ch-form__group--sm">
-            <div class="ch-checkbox">
+            <div class="ch-checkbox" data-dynamic="true">
               <label for="unreserved_only">
                 <input type="hidden" name="unreserved_only" value="false">
                 <input type="checkbox" id="unreserved_only" name="unreserved_only" class="ch-checkbox__input" value="true">
@@ -63,7 +63,7 @@
             <div class="ac-budgetchooser">
               <div class="ch-row ac-row--compact">
                 <div class="ch-col--xs-12 ac-col--compact">
-                  <div class="ch-clearfix ac-paymenttoggle">
+                  <div class="ch-clearfix ac-paymenttoggle" data-dynamic="true">
                     <div class="ch-radio ch-radio--collapsed ac-paymenttoggle__radio">
                       <input type="radio" class="ch-radio__input" name="payment_type" id="payment-type-cash" value="cash" checked="">
                       <label for="payment-type-cash">Cash price
@@ -87,7 +87,7 @@
                     <div>
                       <label for="min-price">Minimum
                       </label>
-                      <input type="text" id="min-price" name="min_price" class="ch-form__control" value="">
+                      <input type="text" id="min-price" name="min_price" class="ch-form__control" value="" data-dynamic="true">
                     </div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
                     <div>
                       <label for="max-price">Maximum
                       </label>
-                      <input type="text" id="max-price" name="max_price" class="ch-form__control" value="">
+                      <input type="text" id="max-price" name="max_price" class="ch-form__control" value="" data-dynamic="true">
                     </div>
                   </div>
                 </div>
@@ -110,16 +110,16 @@
               <label for="vehicle-location" class="ch-form__control-label">Find cars near
               </label>
               <div class="">
-                <input type="text" id="vehicle-location" name="location" class="ch-form__control" placeholder="Postcode, city, etc" value="">
-                <input type="hidden" name="location_lat">
-                <input type="hidden" name="location_lng">
+                <input type="text" id="vehicle-location" name="location" class="ch-form__control" placeholder="Postcode, city, etc" value="" data-dynamic="true">
+                <input type="hidden" name="location_lat" data-dynamic="true">
+                <input type="hidden" name="location_lng" data-dynamic="true">
               </div>
             </div>
             <div class="ch-form__group--sm">
               <label for="distance" class="ch-form__control-label">Distance
               </label>
               <div>
-                <select id="distance" name="distance" class="ch-form__control">
+                <select id="distance" name="distance" class="ch-form__control" data-dynamic="true">
                   <option selected="" value="">Any
                   </option>
                   <option value="10">10 miles
@@ -143,7 +143,7 @@
               <label for="mileage" class="ch-form__control-label">Mileage (maximum)
               </label>
               <div>
-                <select id="mileage" name="mileage" class="ch-form__control">
+                <select id="mileage" name="mileage" class="ch-form__control" data-dynamic="true">
                   <option selected="" value="">Any
                   </option>
                   <option value="500">500 miles
@@ -177,7 +177,7 @@
               <label for="age" class="ch-form__control-label">Age (maximum)
               </label>
               <div>
-                <select id="age" name="age" class="ch-form__control">
+                <select id="age" name="age" class="ch-form__control" data-dynamic="true">
                   <option selected="" value="">Any
                   </option>
                   <option value="1">1 year
@@ -221,114 +221,114 @@
               <label for="body-type" class="ch-form__control-label">Body type
               </label>
               <div class="ac-multigroup ac-multigroup__body_type ac-multigroup--collapsed">
-                <input type="hidden" name="body_type[]" value="">
+                <input type="hidden" name="body_type[]" value="" data-dynamic="true">
                 <div class="ac-multigroup__checkbox-wrapper">
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Hatchback" class="ac-multigroup__body_type--hatchback">
-                      <input type="checkbox" id="body_type--Hatchback" name="body_type[]" class="ch-checkbox__input" value="Hatchback">
+                      <input type="checkbox" id="body_type--Hatchback" name="body_type[]" class="ch-checkbox__input" value="Hatchback" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Hatchback
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Estate" class="ac-multigroup__body_type--estate">
-                      <input type="checkbox" id="body_type--Estate" name="body_type[]" class="ch-checkbox__input" value="Estate">
+                      <input type="checkbox" id="body_type--Estate" name="body_type[]" class="ch-checkbox__input" value="Estate" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Estate
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Saloon" class="ac-multigroup__body_type--saloon">
-                      <input type="checkbox" id="body_type--Saloon" name="body_type[]" class="ch-checkbox__input" value="Saloon">
+                      <input type="checkbox" id="body_type--Saloon" name="body_type[]" class="ch-checkbox__input" value="Saloon" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Saloon
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--SUV" class="ac-multigroup__body_type--suv">
-                      <input type="checkbox" id="body_type--SUV" name="body_type[]" class="ch-checkbox__input" value="SUV">
+                      <input type="checkbox" id="body_type--SUV" name="body_type[]" class="ch-checkbox__input" value="SUV" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       SUV
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--People carrier" class="ac-multigroup__body_type--people carrier">
-                      <input type="checkbox" id="body_type--People carrier" name="body_type[]" class="ch-checkbox__input" value="People carrier">
+                      <input type="checkbox" id="body_type--People carrier" name="body_type[]" class="ch-checkbox__input" value="People carrier" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       People carrier
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Convertible" class="ac-multigroup__body_type--convertible">
-                      <input type="checkbox" id="body_type--Convertible" name="body_type[]" class="ch-checkbox__input" value="Convertible">
+                      <input type="checkbox" id="body_type--Convertible" name="body_type[]" class="ch-checkbox__input" value="Convertible" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Convertible
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Coupe" class="ac-multigroup__body_type--coupe">
-                      <input type="checkbox" id="body_type--Coupe" name="body_type[]" class="ch-checkbox__input" value="Coupe">
+                      <input type="checkbox" id="body_type--Coupe" name="body_type[]" class="ch-checkbox__input" value="Coupe" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Coupe
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Van" class="ac-multigroup__body_type--van">
-                      <input type="checkbox" id="body_type--Van" name="body_type[]" class="ch-checkbox__input" value="Van">
+                      <input type="checkbox" id="body_type--Van" name="body_type[]" class="ch-checkbox__input" value="Van" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Van
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Minibus" class="ac-multigroup__body_type--minibus">
-                      <input type="checkbox" id="body_type--Minibus" name="body_type[]" class="ch-checkbox__input" value="Minibus">
+                      <input type="checkbox" id="body_type--Minibus" name="body_type[]" class="ch-checkbox__input" value="Minibus" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Minibus
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Pick-up" class="ac-multigroup__body_type--pick-up">
-                      <input type="checkbox" id="body_type--Pick-up" name="body_type[]" class="ch-checkbox__input" value="Pick-up">
+                      <input type="checkbox" id="body_type--Pick-up" name="body_type[]" class="ch-checkbox__input" value="Pick-up" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Pick-up
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--City car" class="ac-multigroup__body_type--city car">
-                      <input type="checkbox" id="body_type--City car" name="body_type[]" class="ch-checkbox__input" value="City car">
+                      <input type="checkbox" id="body_type--City car" name="body_type[]" class="ch-checkbox__input" value="City car" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       City car
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="body_type--Motorbike" class="ac-multigroup__body_type--motorbike">
-                      <input type="checkbox" id="body_type--Motorbike" name="body_type[]" class="ch-checkbox__input" value="Motorbike">
+                      <input type="checkbox" id="body_type--Motorbike" name="body_type[]" class="ch-checkbox__input" value="Motorbike" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Motorbike
-                      
+
                     </label>
                   </div>
                 </div>
@@ -340,42 +340,42 @@
               <label for="doors" class="ch-form__control-label">Doors
               </label>
               <div class="ac-multigroup ac-multigroup__doors ac-multigroup--collapsed">
-                <input type="hidden" name="doors[]" value="">
+                <input type="hidden" name="doors[]" value="" data-dynamic="true">
                 <div class="ac-multigroup__checkbox-wrapper">
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="doors--2" class="ac-multigroup__doors--2">
-                      <input type="checkbox" id="doors--2" name="doors[]" class="ch-checkbox__input" value="2">
+                      <input type="checkbox" id="doors--2" name="doors[]" class="ch-checkbox__input" value="2" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       2 doors
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="doors--3" class="ac-multigroup__doors--3">
-                      <input type="checkbox" id="doors--3" name="doors[]" class="ch-checkbox__input" value="3">
+                      <input type="checkbox" id="doors--3" name="doors[]" class="ch-checkbox__input" value="3" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       3 doors
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="doors--4" class="ac-multigroup__doors--4">
-                      <input type="checkbox" id="doors--4" name="doors[]" class="ch-checkbox__input" value="4">
+                      <input type="checkbox" id="doors--4" name="doors[]" class="ch-checkbox__input" value="4" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       4 doors
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="doors--5" class="ac-multigroup__doors--5">
-                      <input type="checkbox" id="doors--5" name="doors[]" class="ch-checkbox__input" value="5">
+                      <input type="checkbox" id="doors--5" name="doors[]" class="ch-checkbox__input" value="5" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       5 doors
-                      
+
                     </label>
                   </div>
                 </div>
@@ -385,42 +385,42 @@
               <label for="seats" class="ch-form__control-label">Seats
               </label>
               <div class="ac-multigroup ac-multigroup__seats ac-multigroup--collapsed">
-                <input type="hidden" name="seats[]" value="">
+                <input type="hidden" name="seats[]" value="" data-dynamic="true">
                 <div class="ac-multigroup__checkbox-wrapper">
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="seats--2" class="ac-multigroup__seats--2">
-                      <input type="checkbox" id="seats--2" name="seats[]" class="ch-checkbox__input" value="2">
+                      <input type="checkbox" id="seats--2" name="seats[]" class="ch-checkbox__input" value="2" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       2 seats
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="seats--4" class="ac-multigroup__seats--4">
-                      <input type="checkbox" id="seats--4" name="seats[]" class="ch-checkbox__input" value="4">
+                      <input type="checkbox" id="seats--4" name="seats[]" class="ch-checkbox__input" value="4" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       4 seats
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="seats--5" class="ac-multigroup__seats--5">
-                      <input type="checkbox" id="seats--5" name="seats[]" class="ch-checkbox__input" value="5">
+                      <input type="checkbox" id="seats--5" name="seats[]" class="ch-checkbox__input" value="5" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       5 seats
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="seats--7" class="ac-multigroup__seats--7">
-                      <input type="checkbox" id="seats--7" name="seats[]" class="ch-checkbox__input" value="7">
+                      <input type="checkbox" id="seats--7" name="seats[]" class="ch-checkbox__input" value="7" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       7 seats
-                      
+
                     </label>
                   </div>
                 </div>
@@ -432,7 +432,7 @@
                   <label for="min-engine-size" class="ch-form__control-label">Engine size (minimum)
                   </label>
                   <div>
-                    <select id="min-engine-size" name="min_engine_size" class="ch-form__control">
+                    <select id="min-engine-size" name="min_engine_size" class="ch-form__control" data-dynamic="true">
                       <option selected="" value="">No min
                       </option>
                       <option value="945">1.0 litre
@@ -466,7 +466,7 @@
                   <label for="max-engine-size" class="ch-form__control-label">Engine size (maximum)
                   </label>
                   <div>
-                    <select id="max-engine-size" name="max_engine_size" class="ch-form__control">
+                    <select id="max-engine-size" name="max_engine_size" class="ch-form__control" data-dynamic="true">
                       <option selected="" value="">No max
                       </option>
                       <option value="1044">1.0 litre
@@ -500,150 +500,150 @@
               <label for="colour" class="ch-form__control-label">Colour
               </label>
               <div class="ac-multigroup ac-multigroup__colour ac-multigroup--collapsed">
-                <input type="hidden" name="colour[]" value="">
+                <input type="hidden" name="colour[]" value="" data-dynamic="true">
                 <div class="ac-multigroup__checkbox-wrapper">
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--White" class="ac-multigroup__colour--white">
-                      <input type="checkbox" id="colour--White" name="colour[]" class="ch-checkbox__input" value="White">
+                      <input type="checkbox" id="colour--White" name="colour[]" class="ch-checkbox__input" value="White" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       White
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Black" class="ac-multigroup__colour--black">
-                      <input type="checkbox" id="colour--Black" name="colour[]" class="ch-checkbox__input" value="Black">
+                      <input type="checkbox" id="colour--Black" name="colour[]" class="ch-checkbox__input" value="Black" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Black
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Blue" class="ac-multigroup__colour--blue">
-                      <input type="checkbox" id="colour--Blue" name="colour[]" class="ch-checkbox__input" value="Blue">
+                      <input type="checkbox" id="colour--Blue" name="colour[]" class="ch-checkbox__input" value="Blue" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Blue
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Red" class="ac-multigroup__colour--red">
-                      <input type="checkbox" id="colour--Red" name="colour[]" class="ch-checkbox__input" value="Red">
+                      <input type="checkbox" id="colour--Red" name="colour[]" class="ch-checkbox__input" value="Red" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Red
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Grey" class="ac-multigroup__colour--grey">
-                      <input type="checkbox" id="colour--Grey" name="colour[]" class="ch-checkbox__input" value="Grey">
+                      <input type="checkbox" id="colour--Grey" name="colour[]" class="ch-checkbox__input" value="Grey" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Grey
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Silver" class="ac-multigroup__colour--silver">
-                      <input type="checkbox" id="colour--Silver" name="colour[]" class="ch-checkbox__input" value="Silver">
+                      <input type="checkbox" id="colour--Silver" name="colour[]" class="ch-checkbox__input" value="Silver" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Silver
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Green" class="ac-multigroup__colour--green">
-                      <input type="checkbox" id="colour--Green" name="colour[]" class="ch-checkbox__input" value="Green">
+                      <input type="checkbox" id="colour--Green" name="colour[]" class="ch-checkbox__input" value="Green" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Green
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Yellow" class="ac-multigroup__colour--yellow">
-                      <input type="checkbox" id="colour--Yellow" name="colour[]" class="ch-checkbox__input" value="Yellow">
+                      <input type="checkbox" id="colour--Yellow" name="colour[]" class="ch-checkbox__input" value="Yellow" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Yellow
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Orange" class="ac-multigroup__colour--orange">
-                      <input type="checkbox" id="colour--Orange" name="colour[]" class="ch-checkbox__input" value="Orange">
+                      <input type="checkbox" id="colour--Orange" name="colour[]" class="ch-checkbox__input" value="Orange" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Orange
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Beige" class="ac-multigroup__colour--beige">
-                      <input type="checkbox" id="colour--Beige" name="colour[]" class="ch-checkbox__input" value="Beige">
+                      <input type="checkbox" id="colour--Beige" name="colour[]" class="ch-checkbox__input" value="Beige" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Beige
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Purple" class="ac-multigroup__colour--purple">
-                      <input type="checkbox" id="colour--Purple" name="colour[]" class="ch-checkbox__input" value="Purple">
+                      <input type="checkbox" id="colour--Purple" name="colour[]" class="ch-checkbox__input" value="Purple" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Purple
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Brown" class="ac-multigroup__colour--brown">
-                      <input type="checkbox" id="colour--Brown" name="colour[]" class="ch-checkbox__input" value="Brown">
+                      <input type="checkbox" id="colour--Brown" name="colour[]" class="ch-checkbox__input" value="Brown" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Brown
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Pink" class="ac-multigroup__colour--pink">
-                      <input type="checkbox" id="colour--Pink" name="colour[]" class="ch-checkbox__input" value="Pink">
+                      <input type="checkbox" id="colour--Pink" name="colour[]" class="ch-checkbox__input" value="Pink" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Pink
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Maroon" class="ac-multigroup__colour--maroon">
-                      <input type="checkbox" id="colour--Maroon" name="colour[]" class="ch-checkbox__input" value="Maroon">
+                      <input type="checkbox" id="colour--Maroon" name="colour[]" class="ch-checkbox__input" value="Maroon" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Maroon
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Cream" class="ac-multigroup__colour--cream">
-                      <input type="checkbox" id="colour--Cream" name="colour[]" class="ch-checkbox__input" value="Cream">
+                      <input type="checkbox" id="colour--Cream" name="colour[]" class="ch-checkbox__input" value="Cream" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Cream
-                      
+
                     </label>
                   </div>
                   <div class="ch-checkbox ac-multigroup__checkbox">
                     <label for="colour--Gold" class="ac-multigroup__colour--gold">
-                      <input type="checkbox" id="colour--Gold" name="colour[]" class="ch-checkbox__input" value="Gold">
+                      <input type="checkbox" id="colour--Gold" name="colour[]" class="ch-checkbox__input" value="Gold" data-dynamic="true">
                       <span class="ch-checkbox__switch">
                       </span>
                       Gold
-                      
+
                     </label>
                   </div>
                 </div>
@@ -654,7 +654,7 @@
             <div class="ch-form__group--sm">
               <label for="keywords" class="ch-form__control-label">Keywords
               </label>
-              <input type="text" id="keywords" class="ch-form__control" name="keywords" value="">
+              <input type="text" id="keywords" class="ch-form__control" name="keywords" value="" data-dynamic="true">
             </div>
           </fieldset>
           <fieldset>
@@ -664,7 +664,7 @@
               <label for="roadtax-cost" class="ch-form__control-label">Road tax (maximum)
               </label>
               <div>
-                <select id="roadtax-cost" name="roadtax_cost" class="ch-form__control">
+                <select id="roadtax-cost" name="roadtax_cost" class="ch-form__control" data-dynamic="true">
                   <option selected="" value="">Any
                   </option>
                   <option value="0">Free
@@ -692,7 +692,7 @@
               <label for="mpg" class="ch-form__control-label">Fuel consumption / MPG
               </label>
               <div>
-                <select id="mpg" name="mpg" class="ch-form__control">
+                <select id="mpg" name="mpg" class="ch-form__control" data-dynamic="true">
                   <option selected="" value="">Any
                   </option>
                   <option value="40">40 MPG +
