@@ -21,7 +21,7 @@ class ComponentUpdatesController < ApplicationController
   end
 
   def dynamic_sections_of component
-    component_xml = Nokogiri::XML("<root>" + render_to_string(partial: "components/#{component}", layout: false) + "</root>")
-    component_xml.css("[data-component='#{component}'] [data-dynamic]").map(&:to_s) # => ["<h1 data-dynamic=\"true\">Heading</h1>"]
+    component_xml = Nokogiri::HTML("<html><body>" + render_to_string(partial: "components/#{component}", layout: false) + "</body></html>")
+    component_xml.css("[data-component='#{component}'] [data-dynamic]").map { |element| element.to_s.split("\n").map(&:strip).join }
   end
 end
