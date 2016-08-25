@@ -1,24 +1,14 @@
-# README
+## Getting Started
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+bundle install
+rails server
+```
 
-Things you may want to cover:
+## What is this?
 
-* Ruby version
+An experiment to show how 160 lines of vanilla Javascript can replace React for an AJAX search
 
-* System dependencies
+## What is Nostalgia?
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A small Javascript library to build component based apps with no custom Javascript.
